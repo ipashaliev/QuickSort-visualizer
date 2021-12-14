@@ -70,8 +70,6 @@ function GetArrLen(){
 }
 
 function SetSortSpeed(){
-    console.log("speed = " + document.getElementById("sliderSpeed").value);
-
     return document.getElementById("sliderSpeed").value;
 }
 
