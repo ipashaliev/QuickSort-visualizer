@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickSortVisualizer</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+  
+<body>
+    <p class="header">Quick Sort visualizer</p>
+    <div id="blocks-container">
+        <div id="array"></div>
+    </div>
+    <div id="count-container">
+        <div id="count"></div>
+    </div>
+    <div id="pointers-container">
+        <div id="pointer"></div>
+    </div>
+    <div id="color-info" style="text-align: center;">
+        <div id="color-beige" class="color-container">
+            <div style="background-color: beige;" class="color"></div>
+            <span>pivot</span>
+        </div>
+        <div id="color-blue" class="color-container">
+            <div style="background-color: blue;" class="color"></div>
+            <span>less than pivot</span>
+        </div>
+        <div id="color-green" class="color-container">
+            <div style="background-color: green;" class="color"></div>
+            <span>greater than pivot</span>
+        </div>
+        <div id="color-yellow" class="color-container">
+            <div style="background-color: yellow;" class="color"></div>
+            <span>equal values</span>
+        </div>
+        
+    </div>
+    <div id="arr-controllers-container">
+        <div id="sliders-container">
+            <div style="margin-top: 18px;">
+                Set array size:
+                <input type="range" id="sliderLength" class="slider" min="0" max="50"
+                oninput="GenerateArray(), GenerateIdxs(), GeneratePointers()"/>
+            </div>
+            <div style="margin-top: 18px;">
+                Set sorting speed:
+                <input type="range" id="sliderSpeed" class="slider" min="5" max="1000"
+                oninput="SetSortSpeed()"/>
+            </div>      
+        </div>
+       
+        <div id="sort-controllers-container">
+            <button id="start-fast" class="btn-sort" onclick="StartFastSort()">Sort</button>  
+            <p>Sort immediately</p>   
+            <button id="start-step" class="btn-sort" style="font-size: 25px;" onclick="StartSorting()">&#9658;</button>
+            <button id="forward" class="btn-sort" style="font-size: 25px;">&#8250;</button>
+            <p>Sort step by step</p> 
+        </div>
+    </div>
+    
+   
+    <div id="message-container">
+        <div id="message"></div>
+    </div>
+    <div class="content-holder"></div>
+  
+    <script src="script.js"></script>
+</body>
+  
+</html>
