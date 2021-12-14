@@ -97,7 +97,7 @@ async function Partition(l, r) {
 
     let pivotIdx = l++;
 
-    cols[pivotIdx].style.backgroundColor = "beige";
+    cols[pivotIdx].style.backgroundColor = "rgb(231, 231, 204)";
 
     DisplayMessage(`Pivot = ${cols[pivotIdx].childNodes[0].innerText} at index = ${pivotIdx}`);
     if(fastSort){
@@ -140,7 +140,6 @@ async function Partition(l, r) {
             if(l >= arrLen){
                 break;
             }
-            //if cols[l] undefined occurs
 
             DisplayMessage(`left pointer pos = ${l}`);
             
@@ -181,13 +180,24 @@ async function Partition(l, r) {
 
         if(l >= r){
             DisplayMessage("Pointers have crossed");
-
+            
             pointers[l].style.color = "white"
             pointers[r].style.color = "white"
 
             cols[r].style.backgroundColor = "red";
             cols[l].style.backgroundColor = "red";
 
+            if(fastSort){
+                await new Promise((resolve) =>
+                        setTimeout(() => {
+                            resolve();
+                        }, speed)
+                    );
+            }else{
+                await new Promise((resolve) =>{
+                    btnNext.addEventListener("click", resolve);
+                });
+            }
             
             break;
         }
@@ -274,7 +284,17 @@ async function Partition(l, r) {
     cols[pivotIdx].childNodes[0].innerText = tempVal;
 
     DisplayMessage(`${cols[pivotIdx].childNodes[0].innerText} found a relative position`);
-
+    if(fastSort){
+        await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, speed)
+            );
+    }else{
+        await new Promise((resolve) =>{
+            btnNext.addEventListener("click", resolve);
+        });
+    }
     return r;
 
 }
@@ -295,7 +315,13 @@ async function QuickSort(l, r) {
     }
     else{
         sorted = true;
-        DisplayMessage("Array sorted")
+        DisplayMessage("Array sorted");
+
+        document.getElementById("start-step").disabled = false;
+        document.getElementById("forward").disabled = false;
+        document.getElementById("sliderLength").disabled = false;
+        document.getElementById("sliderSpeed").disabled = false;
+        document.getElementById("start-fast").disabled = false;
     }
 
 }
@@ -304,6 +330,11 @@ async function StartFastSort(){
     fastSort = true;
     let btnStart = document.getElementById("start-fast");
     btnStart.disabled = true;
+    document.getElementById("start-step").disabled = true;
+    document.getElementById("forward").disabled = true;
+    document.getElementById("sliderLength").disabled = true;
+    document.getElementById("sliderSpeed").disabled = true;
+
     let len = document.getElementById("sliderLength").value;
     let spd = document.getElementById("sliderSpeed").value;
     speed = spd;
@@ -315,7 +346,10 @@ async function StartFastSort(){
 async function StartSorting(){
     let btnStart = document.getElementById("start-step");
     btnStart.disabled = true;
+    document.getElementById("forward").disabled = false;
     let len = document.getElementById("sliderLength").value;
+    document.getElementById("sliderLength").disabled = true;
+    document.getElementById("sliderSpeed").disabled = true;
 
     await QuickSort(0,  len - 1);  
 }
@@ -326,3 +360,5 @@ GenerateArray();
 GenerateIdxs();
 
 GeneratePointers();
+
+document.getElementById("forward").disabled = true;

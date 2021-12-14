@@ -21,7 +21,7 @@
     </div>
     <div id="color-info" style="text-align: center;">
         <div id="color-beige" class="color-container">
-            <div style="background-color: beige;" class="color"></div>
+            <div style="background-color: rgb(231, 231, 204);" class="color"></div>
             <span>pivot</span>
         </div>
         <div id="color-blue" class="color-container">
@@ -33,39 +33,44 @@
             <span>greater than pivot</span>
         </div>
         <div id="color-yellow" class="color-container">
-            <div style="background-color: yellow;" class="color"></div>
+            <div style="background-color: rgb(243, 243, 1);" class="color"></div>
             <span>equal values</span>
         </div>
         
     </div>
     <div id="arr-controllers-container">
         <div id="sliders-container">
-            <div style="margin-top: 18px;">
-                Set array size:
+            <div style="margin-top: 25px;">
+                Array size:
                 <input type="range" id="sliderLength" class="slider" min="0" max="50"
                 oninput="GenerateArray(), GenerateIdxs(), GeneratePointers()"/>
             </div>
-            <div style="margin-top: 18px;">
-                Set sorting speed:
+            <div style="margin-top: 25px;">
+                Sorting speed:
                 <input type="range" id="sliderSpeed" class="slider" min="5" max="1000"
                 oninput="SetSortSpeed()"/>
-            </div>      
+            </div>   
+            <div>
+                <button id="start-fast" class="btn-sort" onclick="StartFastSort()">Sort</button>  
+                <p style="margin-top: 5px">Sort immediately</p> 
+            </div>   
+            <div style="margin-left: 20px;">
+                <button id="start-step" class="btn-sort" style="font-size: 25px;" onclick="StartSorting()">&#9658;</button>
+                <button id="forward" class="btn-sort" style="font-size: 25px;">&#8250;</button>
+                <p style="margin-top: 5px">Sort step by step</p> 
+            </div>
+            
         </div>
        
-        <div id="sort-controllers-container">
-            <button id="start-fast" class="btn-sort" onclick="StartFastSort()">Sort</button>  
-            <p>Sort immediately</p>   
-            <button id="start-step" class="btn-sort" style="font-size: 25px;" onclick="StartSorting()">&#9658;</button>
-            <button id="forward" class="btn-sort" style="font-size: 25px;">&#8250;</button>
-            <p>Sort step by step</p> 
-        </div>
     </div>
     
+
+   <div> 
+        <div id="message-container">
+            <div id="message"></div>
+        </div> 
+   </div>
    
-    <div id="message-container">
-        <div id="message"></div>
-    </div>
-    <div class="content-holder"></div>
   
     <script src="script.js"></script>
 </body>
