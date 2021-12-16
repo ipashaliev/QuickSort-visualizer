@@ -4,13 +4,12 @@ function ClearItems(range){
     range.innerHTML = "";
 }
 
-
 function GenerateArray() {
 
     ClearItems(container);
 
     var arrLen = GetArrLen()
-    for (var i = 0; i < arrLen; i++) {
+    for (let i = 0; i < arrLen; i++) {
 
         var value = Math.ceil(Math.random() * 100);
   
@@ -31,14 +30,13 @@ function GenerateArray() {
     }
 }
 
-
 var count_container = document.getElementById("count");
   
 function GenerateIdxs() {
     ClearItems(count_container);
 
     var arrLen = GetArrLen();
-    for (var i = 0; i < arrLen; i++) {
+    for (let i = 0; i < arrLen; i++) {
 
         var idx = document.createElement("div");
   
@@ -78,12 +76,11 @@ function DisplayMessage(text){
 };
 
 
-
 var btnNext = document.getElementById("forward");
 var fastSort = false;
 var speed = SetSortSpeed();
 
-  
+
 async function Partition(l, r) {
 
     let arrLen = GetArrLen();
@@ -109,8 +106,7 @@ async function Partition(l, r) {
             btnNext.addEventListener("click", resolve);
         });
     }
-    
-    
+     
     while(true){
 
         while(Number(cols[l].childNodes[0].innerText) < Number(cols[pivotIdx].childNodes[0].innerText)){
@@ -169,10 +165,8 @@ async function Partition(l, r) {
             pointers[r].style.color = "white"
             r--;
             
-
             DisplayMessage(`left pointer pos = ${r}`);
             
-
         }
         pointers[r].style.color = "blue"
 
@@ -227,7 +221,6 @@ async function Partition(l, r) {
         }
         else{
 
-
             DisplayMessage(`Swap ${cols[l].childNodes[0].innerText} and ${cols[r].childNodes[0].innerText}
             because ${cols[l].childNodes[0].innerText} > pivot`)
             if(fastSort){
@@ -242,7 +235,6 @@ async function Partition(l, r) {
                 });
             }
             
-
             tempHeight = cols[l].style.height;
             tempVal = cols[l].childNodes[0].innerText;
 
@@ -255,7 +247,6 @@ async function Partition(l, r) {
 
     }
 
-    
     DisplayMessage(`Swap ${cols[r].childNodes[0].innerText} and ${cols[pivotIdx].childNodes[0].innerText}
     because ${cols[r].childNodes[0].innerText} < pivot`)
 
@@ -281,7 +272,7 @@ async function Partition(l, r) {
     cols[r].childNodes[0].innerText = cols[pivotIdx].childNodes[0].innerText;
     cols[pivotIdx].childNodes[0].innerText = tempVal;
 
-    DisplayMessage(`${cols[pivotIdx].childNodes[0].innerText} found a relative position`);
+    DisplayMessage(`${cols[r].childNodes[0].innerText} found a relative position`);
     if(fastSort){
         await new Promise((resolve) =>
                 setTimeout(() => {
@@ -340,7 +331,6 @@ async function StartFastSort(){
 }
 
 
-
 async function StartSorting(){
     let btnStart = document.getElementById("start-step");
     btnStart.disabled = true;
@@ -351,7 +341,6 @@ async function StartSorting(){
 
     await QuickSort(0,  len - 1);  
 }
-
 
 GenerateArray();
   
