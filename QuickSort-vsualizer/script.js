@@ -332,6 +332,7 @@ async function StartFastSort(){
 
 
 async function StartSorting(){
+    fastSort = false;
     let btnStart = document.getElementById("start-step");
     btnStart.disabled = true;
     document.getElementById("forward").disabled = false;
